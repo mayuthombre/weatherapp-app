@@ -1,8 +1,8 @@
 export ACCOUNT_ID
 AWS_REGION = us-east-1
-REPO_NAME = mayu-weatherapp
+REPO_NAME = mayu-weatherapp-repo
 CLUSTER_NAME = mayu-weatherapp-cluster
-SERVICE_NAME = mayu-weatherapp-ecservice
+SERVICE_NAME = mayu-weatherapp-service
 
 .PHONY: build_image
 build_image: 
