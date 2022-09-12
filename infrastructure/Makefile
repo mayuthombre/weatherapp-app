@@ -2,7 +2,7 @@ COMPOSE_RUN_TERRAFORM = terraform
 COMPOSE_RUN_BASH = docker-compose run --rm --entrypoint bash tf
 COMPOSE_RUN_AWS = docker-compose run --rm --entrypoint aws tf
 export ACCOUNT_ID
-AWS_REGION = us-east-1
+AWS_REGION = ap-southeast-2
 REPO_NAME = mayu-weatherapp-repo
 CLUSTER_NAME = mayu-weatherapp-cluster
 SERVICE_NAME = mayu-weatherapp-service
