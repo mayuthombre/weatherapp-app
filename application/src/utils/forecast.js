@@ -1,5 +1,6 @@
 const request = require("request");
 
+
 const forecast = (latitude, longtitude, callback) => {
   const url =
     "https://api.darksky.net/forecast/48a1ebdacea0e2561551ee85c0773faa/" +
@@ -14,6 +15,7 @@ const forecast = (latitude, longtitude, callback) => {
     } else if (body.error) {
       callback("Unable to find location", undefined);
     } else {
+      document.body.style.backgroundImage = "url('../../img/weather2.jpg')";
       callback(
         undefined,
         body.daily.data[0].summary +
