@@ -15,27 +15,28 @@ const forecast = (latitude, longtitude, callback) => {
     } else if (body.error) {
       callback("Unable to find location", undefined);
     } else {
-      let msg1 = document.querySelector("#message-1");
-      msg1.textContent = "hello";
-      // document.body.style.backgroundImage = "url('../../img/weather2.jpg')";
       callback(
         undefined,
-        body.daily.data[0].summary +
-          " It is currently " +
-          body.currently.temperature +
-          " °C outside. The high today is " +
-          body.daily.data[0].temperatureHigh +
-          " °C and the low today is " +
-          body.daily.data[0].temperatureLow +
-          " °C. There is a " +
-          body.currently.precipProbability*100 +
-          "% chance of rain." +
-          " The humidity is " +
-          body.currently.humidity*100 +
-          "%."
+        {
+          summaryWeather: body.daily.data[0].summary +
+            " It is currently " +
+            body.currently.temperature +
+            " °C outside. The high today is " +
+            body.daily.data[0].temperatureHigh +
+            " °C and the low today is " +
+            body.daily.data[0].temperatureLow +
+            " °C. There is a " +
+            body.currently.precipProbability * 100 +
+            "% chance of rain." +
+            " The humidity is " +
+            body.currently.humidity * 100 +
+            "%.",
+          temperature: body.currently.temperature
+        }
       );
     }
   });
 };
+
 
 module.exports = forecast;
