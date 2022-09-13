@@ -15,7 +15,7 @@ const forecast = (latitude, longtitude, callback) => {
     } else if (body.error) {
       callback("Unable to find location", undefined);
     } else {
-      document.body.style.backgroundImage = "url('../../img/weather2.jpg')";
+      // document.body.style.backgroundImage = "url('../../img/weather2.jpg')";
       callback(
         undefined,
         body.daily.data[0].summary +
