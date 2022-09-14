@@ -2,7 +2,7 @@ name: Build image & update ECS task
 on:
   workflow_dispatch:
     branches:
-      - master
+      - ui-feature
   push:
     branches:
       - master
