@@ -22,7 +22,9 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_cpu"></a> [cpu](#input\_cpu) | CPU units for each task | `number` | `256` | no |
 | <a name="input_ecsTaskExecutionRole"></a> [ecsTaskExecutionRole](#input\_ecsTaskExecutionRole) | IAM role ID exported from infra's github repo | `string` | `""` | no |
+| <a name="input_memory"></a> [memory](#input\_memory) | memory for tasks | `number` | `512` | no |
 | <a name="input_name"></a> [name](#input\_name) | name for each resource | `string` | `""` | no |
 | <a name="input_repo_url"></a> [repo\_url](#input\_repo\_url) | ecr repl url exported from infra's github repo | `string` | `""` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Use tags to identify project resources | `map(string)` | `{}` | no |

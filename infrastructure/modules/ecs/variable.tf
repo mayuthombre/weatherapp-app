@@ -21,3 +21,15 @@ variable "name" {
   description = "name for each resource"
   default     = ""
 }
+
+variable "cpu" {
+  type = number
+  description = "CPU units for each task"
+  default = 256
+}
+
+variable "memory" {
+  type = number
+  description = "memory for tasks"
+  default = 512
+}
