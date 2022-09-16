@@ -18,8 +18,8 @@ resource "aws_ecs_task_definition" "weatherapp_ecstask" {
   TASK_DEFINITION
   requires_compatibilities = ["FARGATE"]              # Stating that we are using ECS Fargate to run tasks
   network_mode             = "awsvpc"                 # Using awsvpc as our network mode as this is required for Fargate
-  memory                   = var.cpu                  # Specifying the memory our container requires
-  cpu                      = var.memory               # Specifying the CPU our container requires
+  memory                   = var.memory                  # Specifying the memory our container requires
+  cpu                      = var.cpu               # Specifying the CPU our container requires
   execution_role_arn       = var.ecsTaskExecutionRole # attach IAM role
 
 
