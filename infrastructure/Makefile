@@ -11,7 +11,7 @@ SERVICE_NAME = mayu-weatherapp-service
 run_plan: init plan
 
 .PHONY: run_apply
-run_apply: init apply -target=module.ecs.aws_ecs_task_definition.weatherapp_ecstask 
+run_apply: init apply
 
 .PHONY: run_destroy_plan
 run_destroy_plan: init destroy_plan
