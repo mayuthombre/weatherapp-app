@@ -23,13 +23,13 @@ variable "name" {
 }
 
 variable "cpu" {
-  type = number
+  type = string
   description = "CPU units for each task"
   default = 256
 }
 
 variable "memory" {
-  type = number
+  type = string
   description = "memory for tasks"
   default = 512
 }
