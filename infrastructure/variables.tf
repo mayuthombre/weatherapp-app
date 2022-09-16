@@ -9,3 +9,9 @@ variable "name" {
   description = "name for each resource"
   default     = ""
 }
+
+variable "region" {
+  type        = string
+  description = "Region in which AWS resources will be created"
+  default     = ""
+}
