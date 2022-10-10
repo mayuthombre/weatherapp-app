@@ -45,15 +45,12 @@ jobs:
     - name: Terraform_Apply
       run: make run_apply  
     - name: "Run build-chain"
-      id: build-chain
-      uses: kiegroup/github-action-build-chain@v2.6.25
+      uses: convictional/trigger-workflow-and-wait@v1.3.0
       with:
-        definition-file: https://github.com/mayuthombre/weatherapp-infra/tree/master/.github/workflows/main.yaml
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_SESSION_TOKEN:  ${{ secrets.AWS_SESSION_TOKEN }} 
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        owner: mayuthombre
+        repo: weatherapp-infra
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        workflow_file_name: main.yml
 
   docker_image:
     defaults:
