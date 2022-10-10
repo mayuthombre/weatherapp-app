@@ -44,13 +44,7 @@ jobs:
       run: make run_plan
     - name: Terraform_Apply
       run: make run_apply  
-    - name: "Run build-chain"
-      uses: convictional/trigger-workflow-and-wait@v1.3.0
-      with:
-        owner: mayuthombre
-        repo: weatherapp-infra
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        workflow_file_name: main.yml
+
 
   docker_image:
     defaults:
