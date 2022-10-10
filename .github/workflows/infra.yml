@@ -46,7 +46,7 @@ jobs:
       run: make run_apply  
     - name: "Run build-chain"
       id: build-chain
-      uses: kiegroup/github-action-build-chain@v2.5
+      uses: kiegroup/github-action-build-chain@v2.6.25
       with:
         definition-file: https://github.com/mayuthombre/weatherapp-infra/tree/master/.github/workflows/main.yaml
 
