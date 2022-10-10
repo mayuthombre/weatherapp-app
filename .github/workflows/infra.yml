@@ -49,6 +49,10 @@ jobs:
       uses: kiegroup/github-action-build-chain@v2.6.25
       with:
         definition-file: https://github.com/mayuthombre/weatherapp-infra/tree/master/.github/workflows/main.yaml
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_SESSION_TOKEN:  ${{ secrets.AWS_SESSION_TOKEN }} 
 
   docker_image:
     defaults:
