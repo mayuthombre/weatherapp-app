@@ -2,7 +2,7 @@ name: Build image & update ECS task
 on:
   workflow_dispatch:
     branches:
-      - ui-feature
+      - green
   push:
     branches:
       - master
@@ -32,5 +32,5 @@ jobs:
       run: make build_image
     - name: Push image to ECR
       run: make push_image
-    - name: Recreate Blue ECS tasks
-      run: make blue_update_ecs
+    - name: Recreate green ECS tasks
+      run: make green_update_ecs
