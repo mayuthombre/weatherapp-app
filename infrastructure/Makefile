@@ -5,7 +5,7 @@ export ACCOUNT_ID
 AWS_REGION = ap-southeast-2
 REPO_NAME = mayu-weatherapp-repo
 CLUSTER_NAME = mayu-weatherapp-cluster
-BLUE_SERVICE_NAME = mayu-weatherapp-blue
+SERVICE_NAME = mayu-weatherapp-blue
 
 .PHONY: run_plan
 run_plan: init plan
@@ -51,7 +51,7 @@ list_bucket:
 
 .PHONY: build_image
 build_image: 
-	docker build --platform linux/amd64 -t $(ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/$(REPO_NAME):blue .
+	docker build --platform linux/amd64 -t $(ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/$(REPO_NAME):latest .
 
 .PHONY: login_ecr
 login_ecr: 
@@ -59,8 +59,8 @@ login_ecr:
 
 .PHONY: push_image
 push_image: 
-	docker push $(ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/$(REPO_NAME):blue
+	docker push $(ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/$(REPO_NAME):latest
 
-.PHONY: blue_update_ecs
+.PHONY: update_ecs
 update_ecs:
-	aws ecs update-service --cluster ${CLUSTER_NAME} --service ${BLUE_SERVICE_NAME} --force-new-deployment --region ${AWS_REGION}
+	aws ecs update-service --cluster ${CLUSTER_NAME} --service ${SERVICE_NAME} --force-new-deployment --region ${AWS_REGION}
