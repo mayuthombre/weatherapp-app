@@ -61,6 +61,6 @@ login_ecr:
 push_image: 
 	docker push $(ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/$(REPO_NAME):green
 
-.PHONY: blue_update_ecs
+.PHONY: green_update_ecs
 update_ecs:
 	aws ecs update-service --cluster ${CLUSTER_NAME} --service ${GREEN_SERVICE_NAME} --force-new-deployment --region ${AWS_REGION}
