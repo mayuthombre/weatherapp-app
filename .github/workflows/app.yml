@@ -32,5 +32,5 @@ jobs:
       run: make build_image
     - name: Push image to ECR
       run: make push_image
-    - name: Recreate ECS tasks
-      run: make update_ecs
+    - name: Recreate Blue ECS tasks
+      run: make blue_update_ecs
