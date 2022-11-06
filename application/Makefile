@@ -21,7 +21,7 @@ green_push_image:
 
 .PHONY: green_update_ecs
 green_update_ecs:
-    aws ecs update-service --cluster ${GREEN_CLUSTER_NAME} --service ${GREEN_SERVICE_NAME} --force-new-deployment --region ${AWS_REGION}
+ 	aws ecs update-service --cluster ${GREEN_CLUSTER_NAME} --service ${GREEN_SERVICE_NAME} --force-new-deployment --region ${AWS_REGION}
 
 .PHONY: blue_push_image
 blue_push_image: 
