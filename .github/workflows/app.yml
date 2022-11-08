@@ -34,9 +34,3 @@ jobs:
       run: make green_push_image
     - name: Recreate green ECS tasks
       run: make green_update_ecs
-    # - name: Build blue docker image
-    #   run: make blue_build_image
-    # - name: Push image to blue ECR
-    #   run: make blue_push_image
-    # - name: Recreate green ECS tasks
-    #   run: make blue_update_ecs
