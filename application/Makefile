@@ -2,10 +2,10 @@ export ACCOUNT_ID
 AWS_REGION = ap-southeast-2
 BLUE_REPO_NAME = mayu-weatherapp-blue
 GREEN_REPO_NAME = mayu-weatherapp-green
-BLUE_CLUSTER_NAME = mayu-weatherapp-BlueCluster
-GREEN_CLUSTER_NAME = mayu-weatherapp-GreenCluster
-BLUE_SERVICE_NAME = mayu-weatherapp-blue
-GREEN_SERVICE_NAME = mayu-weatherapp-green
+BLUE_CLUSTER_NAME = mayu-weatherapp-bluecluster
+GREEN_CLUSTER_NAME = mayu-weatherapp-greencluster
+BLUE_SERVICE_NAME = mayu-weatherapp-blueservice
+GREEN_SERVICE_NAME = mayu-weatherapp-greenservice
 
 .PHONY: blue_build_image
 blue_build_image: 
