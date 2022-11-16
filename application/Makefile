@@ -2,8 +2,7 @@ export ACCOUNT_ID
 AWS_REGION = ap-southeast-2
 BLUE_REPO_NAME = mayu-weatherapp-blue
 GREEN_REPO_NAME = mayu-weatherapp-green
-BLUE_CLUSTER_NAME = mayu-weatherapp-bluecluster
-GREEN_CLUSTER_NAME = mayu-weatherapp-greencluster
+CLUSTER_NAME = mayu-weatherapp-cluster
 BLUE_SERVICE_NAME = mayu-weatherapp-blueservice
 GREEN_SERVICE_NAME = mayu-weatherapp-greenservice
 
@@ -21,7 +20,7 @@ green_push_image:
 
 .PHONY: green_update_ecs
 green_update_ecs:
-	aws ecs update-service --cluster ${GREEN_CLUSTER_NAME} --service ${GREEN_SERVICE_NAME} --force-new-deployment --region ${AWS_REGION}
+	aws ecs update-service --cluster ${CLUSTER_NAME} --service ${GREEN_SERVICE_NAME} --force-new-deployment --region ${AWS_REGION}
 
 .PHONY: blue_push_image
 blue_push_image:
@@ -29,7 +28,7 @@ blue_push_image:
 
 .PHONY: blue_update_ecs
 blue_update_ecs:
-	aws ecs update-service --cluster ${BLUE_CLUSTER_NAME} --service ${BLUE_SERVICE_NAME} --force-new-deployment --region ${AWS_REGION}
+	aws ecs update-service --cluster ${CLUSTER_NAME} --service ${BLUE_SERVICE_NAME} --force-new-deployment --region ${AWS_REGION}
 
 .PHONY: green_build_image
 green_build_image:
