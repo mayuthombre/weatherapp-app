@@ -5,7 +5,7 @@ variable "name" {
 
 variable "blue_cluster_arn" {
   type    = string
-  default = " arn:aws:ecs:ap-southeast-2:152848913167:cluster/mayu-weatherapp-cluster"
+  default = "arn:aws:ecs:ap-southeast-2:152848913167:cluster/mayu-weatherapp-cluster"
 }
 
 variable "region" {
