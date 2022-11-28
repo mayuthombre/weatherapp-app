@@ -18,6 +18,6 @@ then
     docker push ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${BLUE_REPO_NAME}:latest
     aws ecs update-service --cluster ${CLUSTER_NAME} --service ${BLUE_SERVICE_NAME} --force-new-deployment --region ${AWS_REGION}
 else
-    echo "error"
+    echo "error: Are you trying to break everything? Go back & fix weighted distribution in Route53"
     exit 0
 fi
