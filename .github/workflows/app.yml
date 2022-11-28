@@ -26,11 +26,13 @@ jobs:
       REPO_NAME: ${{ secrets.REPO_NAME }}
     steps:
     - uses: actions/checkout@v2  
-    - name: Login to ECR
-      run: make login_ecr
-    - name: Build green docker image
-      run: make green_build_image
-    - name: Push image to green ECR
-      run: make green_push_image
-    - name: Recreate green ECS tasks
-      run: make green_update_ecs
+    - name: run bash script
+      run: make do_script
+    # - name: Login to ECR
+    #   run: make login_ecr
+    # - name: Build green docker image
+    #   run: make green_build_image
+    # - name: Push image to green ECR
+    #   run: make green_push_image
+    # - name: Recreate green ECS tasks
+    #   run: make green_update_ecs
