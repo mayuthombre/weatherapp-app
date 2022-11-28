@@ -9,7 +9,7 @@ export GREEN_SERVICE_NAME = mayu-weatherapp-greenservice
 
 .PHONY: do_script
 do_script:
-	application/deploy.sh
+	./deploy.sh
 
 .PHONY: login_ecr
 login_ecr:
