@@ -61,10 +61,11 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: deployenv
-      - shell: bash
+      - name: run_bash
+        shell: bash
         run: |
           value=`cat ENV_TO_DEPLOY`
-        if : ${{ value == 'green' }}
+        if : steps.run_bash.value == 'green'
       - name: deploy to blue environment
         # uses: actions/checkout@v2  
         run: make blue_deploy
