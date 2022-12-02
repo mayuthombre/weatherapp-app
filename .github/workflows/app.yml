@@ -30,6 +30,17 @@ jobs:
       run: |
         chmod +x deploy.sh
         ./deploy.sh
+    - name: Upload env result for job 1
+      uses: actions/upload-artifact@v3
+      with:
+        name: deployenv
+        path: ENV_TO_DEPLOY
+
+
+
+
+
+
     # - name: Login to ECR
     #   run: make login_ecr
     # - name: Build green docker image
@@ -45,7 +56,17 @@ jobs:
         working-directory: ./application    
     runs-on: ubuntu-latest
     needs: find_enviroment
-    if: ${{ ENV_TO_DEPLOY == 'blue' }}
+    steps:
+      - name: Download env result for job 1
+        uses: actions/download-artifact@v3
+        with:
+          name: deployenv
+      - shell: bash
+        run: |
+          value=`cat ENV_TO_DEPLOY`
+        if : value == 'green'
+      - name: deploy to blue environment
+        run: make blue_deploy
     environment:
       name: approval
     env:
@@ -57,8 +78,7 @@ jobs:
       REPO_NAME: ${{ secrets.REPO_NAME }}
     steps:
     - uses: actions/checkout@v2  
-    - name: deploy to blue environment
-      run: make blue_deploy
+   
 
   green_deploy:
     defaults:
@@ -66,7 +86,7 @@ jobs:
         working-directory: ./application    
     runs-on: ubuntu-latest
     needs: find_enviroment
-    if: $GITHUB_ENV == 'green'
+    if: GITHUB_ENV == 'green'
     environment:
       name: approval
     env:
