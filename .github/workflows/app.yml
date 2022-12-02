@@ -34,7 +34,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: deployenv
-        path: ENV_TO_DEPLOY
+        path: ENV_TO_DEPLOY.txt
 
 
 
@@ -57,14 +57,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: find_enviroment
     steps:
-      - name: Download env result for job 1
+      - name: Download env file
         uses: actions/download-artifact@v3
         with:
           name: deployenv
       - name: run_bash
         shell: bash
         run: |
-          value=`cat ENV_TO_DEPLOY`
+          value=`cat ENV_TO_DEPLOY.txt`
         if : steps.run_bash.value == 'green'
       - name: deploy to blue environment
         # uses: actions/checkout@v2  
