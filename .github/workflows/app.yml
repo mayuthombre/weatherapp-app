@@ -45,7 +45,7 @@ jobs:
         working-directory: ./application    
     runs-on: ubuntu-latest
     needs: find_enviroment
-    if: $GITHUB_ENV == 'blue'
+    if: ${{ ENV_TO_DEPLOY == 'blue' }}
     environment:
       name: approval
     env:
