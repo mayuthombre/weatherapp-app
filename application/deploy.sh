@@ -7,7 +7,7 @@ echo $blue | jq -r '.[].Weight' > valblue
 valblue=`cat valblue`
 if [ $valgreen -eq 0 ]
 then
-    echo "green" > test
+    echo "green" > test/test
     # export GITHUB_ENV="green"
     # echo $GITHUB_ENV
     #export $GITHUB_ENV = "green"
