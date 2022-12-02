@@ -34,7 +34,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: deployenv
-        path: ./ENV_TO_DEPLOY.txt
+        path: test
 
 
 
@@ -64,7 +64,7 @@ jobs:
       - name: run_bash
         shell: bash
         run: |
-          value=`cat ENV_TO_DEPLOY.txt`
+          value=`cat test`
         if : steps.run_bash.value == 'green'
       - name: deploy to blue environment
         # uses: actions/checkout@v2  
