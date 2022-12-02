@@ -34,7 +34,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: deployenv
-        path: ./application/test
+        path: /application/deployenv
         if-no-files-found: error
 
 
