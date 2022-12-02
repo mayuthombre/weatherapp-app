@@ -64,7 +64,7 @@ jobs:
       - shell: bash
         run: |
           value=`cat ENV_TO_DEPLOY`
-        if : value == 'green'
+        if : ${{ value == 'green' }}
       - name: deploy to blue environment
         # uses: actions/checkout@v2  
         run: make blue_deploy
