@@ -34,7 +34,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: deployenv
-        path: test/test
+        path: application/test
 
 
 
