@@ -18,7 +18,7 @@ then
     # aws ecs update-service --cluster ${CLUSTER_NAME} --service ${GREEN_SERVICE_NAME} --force-new-deployment --region ${AWS_REGION}
 elif [ $valblue -eq 0 ]
 then
-    echo "blue" > /application/deployenv
+    echo "blue" > deployenv
     # export GITHUB_ENV="blue"
     # echo $GITHUB_ENV
 
