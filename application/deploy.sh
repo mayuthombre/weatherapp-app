@@ -7,7 +7,7 @@ echo $blue | jq -r '.[].Weight' > valblue
 valblue=`cat valblue`
 if [ $valgreen -eq 0 ]
 then
-    echo "ENV_TO_DEPLOY=green" >> $GITHUB_ENV
+    echo "ENV_TO_DEPLOY=green" > myvars.env
     # export GITHUB_ENV="green"
     # echo $GITHUB_ENV
     #export $GITHUB_ENV = "green"
@@ -18,7 +18,7 @@ then
     # aws ecs update-service --cluster ${CLUSTER_NAME} --service ${GREEN_SERVICE_NAME} --force-new-deployment --region ${AWS_REGION}
 elif [ $valblue -eq 0 ]
 then
-    echo "ENV_TO_DEPLOY=blue" >> $GITHUB_ENV
+    echo "ENV_TO_DEPLOY=blue" > myvars.env
     # export GITHUB_ENV="blue"
     # echo $GITHUB_ENV
 
