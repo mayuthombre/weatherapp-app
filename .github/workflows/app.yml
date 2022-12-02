@@ -44,7 +44,8 @@ jobs:
       run:
         working-directory: ./application    
     runs-on: ubuntu-latest
-    if: GITHUB_ENV == 'blue'
+    needs: find_enviroment
+    if: ${{GITHUB_ENV == 'blue'}}
     environment:
       name: approval
     env:
@@ -64,7 +65,8 @@ jobs:
       run:
         working-directory: ./application    
     runs-on: ubuntu-latest
-    if: GITHUB_ENV == 'green'
+    needs: find_enviroment
+    if: ${{GITHUB_ENV == 'green'}}
     environment:
       name: approval
     env:
