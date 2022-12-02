@@ -7,8 +7,8 @@ echo $blue | jq -r '.[].Weight' > valblue
 valblue=`cat valblue`
 if [ $valgreen -eq 0 ]
 then
-    echo "ENV_TO_DEPLOY=green" >> $GITHUB_ENV
-    export $GITHUB_ENV = "green"
+    echo "ENV_TO_DEPLOY=green" >> .env
+    #export $GITHUB_ENV = "green"
     # echo "No traffic found on GREEN. Deploying the application to GREEN environment"
     # docker build --platform linux/amd64 -t ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${GREEN_REPO_NAME}:latest .
     # aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
@@ -16,8 +16,8 @@ then
     # aws ecs update-service --cluster ${CLUSTER_NAME} --service ${GREEN_SERVICE_NAME} --force-new-deployment --region ${AWS_REGION}
 elif [ $valblue -eq 0 ]
 then
-    echo "ENV_TO_DEPLOY=blue" >> $GITHUB_ENV
-    export $GITHUB_ENV = "blue"
+    echo "ENV_TO_DEPLOY=blue" >> .env
+    #export $GITHUB_ENV = "blue"
 
     # echo "No traffic found on BLUE. Deploying the application to BLUE environment"
     # docker build --platform linux/amd64 -t ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${BLUE_REPO_NAME}:latest .
