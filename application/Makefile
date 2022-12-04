@@ -8,10 +8,10 @@ export BLUE_SERVICE_NAME = mayu-weatherapp-blueservice
 export GREEN_SERVICE_NAME = mayu-weatherapp-greenservice
 
 .PHONY:	green_deploy
-green_all: login_ecr green_build_image green_push_image green_update_ecs
+green_deploy: login_ecr green_build_image green_push_image green_update_ecs
 
 .PHONY:	blue_deploy
-blue_all:	login_ecr	blue_build_image	blue_push_image	blue_update_ecs
+blue_deploy:	login_ecr	blue_build_image	blue_push_image	blue_update_ecs
 
 # .PHONY: do_script
 # do_script:
