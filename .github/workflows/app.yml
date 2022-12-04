@@ -32,7 +32,7 @@ jobs:
         ./deploy.sh
     - name: deploy to blue
       if: env.ENV_TO_DEPLOY == 'blue'
-      run: make blue_deploy
+      run: make login_ecr
     - name: deploy to green
       if: env.ENV_TO_DEPLOY == 'green'
       run: make green_deploy
