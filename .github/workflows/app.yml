@@ -38,7 +38,7 @@ jobs:
     #   run: make green_push_image
     # - name: Recreate green ECS tasks
     #   run: make green_update_ecs
-jobs:
+
   blue_deploy:
     defaults:
       run:
@@ -58,7 +58,7 @@ jobs:
     - uses: actions/checkout@v2  
     - name: deploy to blue environment
       run: make blue_deploy
-jobs:
+
   green_deploy:
     defaults:
       run:
