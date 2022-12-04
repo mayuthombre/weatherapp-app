@@ -69,7 +69,7 @@ jobs:
         if : steps.run_bash.value == 'blue'
       - name: deploy to blue environment
         # uses: actions/checkout@v2  
-        run: make blue_deploy
+        run: make login_ecr
     # environment:
     #   name: approval
     env:
@@ -100,7 +100,7 @@ jobs:
         if : steps.run_bash.value == 'green'
       - name: deploy to green environment
         # uses: actions/checkout@v2  
-        run: make green_deploy
+        run: make login_ecr
     # environment:
     #   name: approval
     env:
