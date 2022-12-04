@@ -30,12 +30,12 @@ jobs:
       run: |
         chmod +x deploy.sh
         ./deploy.sh
-    # - name: deploy to blue
-    #   if: env.ENV_TO_DEPLOY == 'blue'
-    #   run: make login_ecr
-    # - name: deploy to green
-    #   if: env.ENV_TO_DEPLOY == 'green'
-    #   run: make green_deploy
+    - name: deploy to blue
+      if: env.ENV_TO_DEPLOY == 'blue'
+      run: make blue_deploy
+    - name: deploy to green
+      if: env.ENV_TO_DEPLOY == 'green'
+      run: make green_deploy
     # - name: Login to ECR
     #   run: make login_ecr
     # - name: Build green docker image
@@ -45,47 +45,47 @@ jobs:
     # - name: Recreate green ECS tasks
     #   run: make green_update_ecs
 
-  blue_deploy:
-    needs: deploy_environment
-    defaults:
-      run:
-        working-directory: ./application    
-    runs-on: ubuntu-latest
-    if: env.ENV_TO_DEPLOY == 'blue'
-    environment:
-      name: approval
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_SESSION_TOKEN:  ${{ secrets.AWS_SESSION_TOKEN }} 
-      ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
-      AWS_REGION: ${{ secrets.AWS_REGION }}
-      REPO_NAME: ${{ secrets.REPO_NAME }}
-    steps:
-    - uses: actions/checkout@v2  
-    - name: deploy to blue environment
-      run: make login_ecr
+  # blue_deploy:
+  #   needs: deploy_environment
+  #   defaults:
+  #     run:
+  #       working-directory: ./application    
+  #   runs-on: ubuntu-latest
+  #   if: env.ENV_TO_DEPLOY == 'blue'
+  #   environment:
+  #     name: approval
+  #   env:
+  #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #     AWS_SESSION_TOKEN:  ${{ secrets.AWS_SESSION_TOKEN }} 
+  #     ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
+  #     AWS_REGION: ${{ secrets.AWS_REGION }}
+  #     REPO_NAME: ${{ secrets.REPO_NAME }}
+  #   steps:
+  #   - uses: actions/checkout@v2  
+  #   - name: deploy to blue environment
+  #     run: make login_ecr
 
-  green_deploy:
-    needs: deploy_environment
-    defaults:
-      run:
-        working-directory: ./application    
-    runs-on: ubuntu-latest
-    if: env.ENV_TO_DEPLOY == 'green'
-    environment:
-      name: approval
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_SESSION_TOKEN:  ${{ secrets.AWS_SESSION_TOKEN }} 
-      ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
-      AWS_REGION: ${{ secrets.AWS_REGION }}
-      REPO_NAME: ${{ secrets.REPO_NAME }}
-    steps:
-    - uses: actions/checkout@v2  
-    - name: deploy to green environment
-      run: make login_ecr
+  # green_deploy:
+  #   needs: deploy_environment
+  #   defaults:
+  #     run:
+  #       working-directory: ./application    
+  #   runs-on: ubuntu-latest
+  #   if: env.ENV_TO_DEPLOY == 'green'
+  #   environment:
+  #     name: approval
+  #   env:
+  #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #     AWS_SESSION_TOKEN:  ${{ secrets.AWS_SESSION_TOKEN }} 
+  #     ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
+  #     AWS_REGION: ${{ secrets.AWS_REGION }}
+  #     REPO_NAME: ${{ secrets.REPO_NAME }}
+  #   steps:
+  #   - uses: actions/checkout@v2  
+  #   - name: deploy to green environment
+  #     run: make login_ecr
 
 
 
