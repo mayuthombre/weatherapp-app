@@ -34,9 +34,8 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: deployenv
-        path: /application/deployenv
+        path: ./application/deployenv
         if-no-files-found: error
-
 
 
 
@@ -62,10 +61,11 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: deployenv
+          path: ./application/deployenv
       - name: run_bash
         shell: bash
         run: |
-          value=`cat test`
+          value=`cat deployenv`
         if : steps.run_bash.value == 'green'
       - name: deploy to blue environment
         # uses: actions/checkout@v2  

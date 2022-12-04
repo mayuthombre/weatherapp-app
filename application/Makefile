@@ -1,5 +1,5 @@
 export ACCOUNT_ID
-export HOSTED_ZONE_ID
+export HOSTED_ZONE_ID = Z012246022TOM5F66YLQS
 export AWS_REGION = ap-southeast-2
 export BLUE_REPO_NAME = mayu-weatherapp-blue
 export GREEN_REPO_NAME = mayu-weatherapp-green
