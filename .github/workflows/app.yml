@@ -61,7 +61,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: deployenv
-          path: ./application/deployenv
+          #path: ./application/deployenv
       - name: run_bash
         shell: bash
         run: |
@@ -92,7 +92,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: deployenv
-          path: ./application/deployenv
+          #path: ./application/deployenv
       - name: run_bash
         shell: bash
         run: |
