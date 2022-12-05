@@ -2,15 +2,15 @@ name: Build image & update ECS task
 on:
   workflow_dispatch:
     branches:
-      - master
+      - blue-green
   push:
     branches:
-      - master
+      - blue-green
     paths:
       - 'application/**'
       - '.github/workflows/app.yml'
 jobs:
-  docker_image:
+  deploy_environment:
     defaults:
       run:
         working-directory: ./application    
@@ -24,13 +24,19 @@ jobs:
       ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
       REPO_NAME: ${{ secrets.REPO_NAME }}
+      HOSTED_ZONE_ID: ${{ secrets.HOSTED_ZONE_ID}}
     steps:
     - uses: actions/checkout@v2  
-    - name: Login to ECR
-      run: make login_ecr
-    - name: Build docker image
-      run: make build_image
-    - name: Push image to ECR
-      run: make push_image
-    - name: Recreate ECS tasks
-      run: make update_ecs
+    - name: run bash script
+      run: |
+        chmod +x deploy.sh
+        ./deploy.sh
+    - name: deploy to blue
+      if: env.ENV_TO_DEPLOY == 'blue'
+      run: make blue_deploy
+    - name: deploy to green
+      if: env.ENV_TO_DEPLOY == 'green'
+      run: make green_deploy
+    - name: deployment error - check for load distribution
+      if: env.ENV_TO_DEPLOY == 'error'
+      run: exit 1

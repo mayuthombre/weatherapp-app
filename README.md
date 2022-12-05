@@ -9,17 +9,26 @@ It includes and supports the following functionality:
 - Node Weather App - https://github.com/phattp/nodejs-weather-app
 
 
+## Blue/Green Deployment
+The idea of blue green deployment has been around for quite some time. Main idea is that essentially we have two instances of application running at any given point in time. 
+
+We have a blue instance which is serving all incoming traffic and green instances which are sitting idle.
+So the idea is we can deploy a new version of traffic on the green instances. Do the UAT testing or PVT testing before migrating the traffic to the green environment. 
+
+Once all testings are passed, we can cut over the entire traffic from blue to green just by chaning the load balancer behind the DNS. This is why you will also need the infrastructure layer of the application mentioned above.
+https://github.com/mayuthombre/weatherapp-infra
+
+
 ## Getting Started
 This GitHub template should be used to create your own repository. Repository will need to be public if you are creating it in your personal GitHub account in order to support approval gates in GitHub actions. Configure the following to get started:
-* Clone your repository locally. It should have a branch named `master`.
-* Create a `destroy` branch in your GitHub repo. This will be used to trigger Terraform Destroy workflow during pull request from `master->destroy`.
+* Clone your repository locally. It should have a branch named `blue-green`.
 * Create an environment in your repository named `approval` to support GitHub Workflows, selecting `required reviewers` and adding yourself as an approver.
-* Update the `key` value in the `meta.tf` file replacing `<username>` with your username for the name of the Terraform state file.
-* Update the default bucket name in the `variable.tf` file to a something globally unique.
-* Create GitHub Secrets in your repository for `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_SESSION_TOKEN` if using temporary credentials.
-* Push local changes to the GitHub repos master branch, which should trigger the Github deploy workflow, and deploy the s3 bucket. Remember to review tf plan and approve apply.
-* Create a pull request to merge master changes to destroy branch. Merge changes to trigger the Github destroy workflow deleting the s3 bucket. Remember to review the tf speculative plan and approve destroy.
-* You can list s3 bucket in the APAC Dev account by running `make list_bucket` locally within the repo clone, to check bucket creation and removal.
+* Create GitHub Secrets in your repository for `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` `AWS_SESSION_TOKEN` and `HOSTED_ZONE_ID`if using temporary credentials.
+* Use Makefile to add/update/change the run commands as needed. Makefile is stored within the application folder.
+* Application folder also contains bash script file `deploy.sh`. This script is used to fetch the load balancer weights and make decision whether to deploy the newer version to blue environment or green environment
+* Push local changes to the GitHub repos blue-green branch, which should trigger the Github deploy workflow.
+
+
 
 
 Keep reading for in-depth details.
@@ -27,22 +36,8 @@ Keep reading for in-depth details.
 <br> 
 
 3 Musketeers
-The provided makefile, dockerfile , and docker-compose.yml files work together to create a docker container which is used to run Terraform deployments and other supported commands. It expects AWS account credentials to be passed as environment variables.
+The provided makefile, dockerfile , and docker-compose.yml files work together to create a docker container. It expects AWS account credentials to be passed as environment variables.
 
-To run a simple aws command, ensure you have set your aws temporary credentials in your local environment and run the following
-
-make list_bucket
-Deploying Terraform environment locally - creates tfplan file during plan as input to apply. Apply is auto-approved.
-
-make run_plan
-make run_apply
-Destroying Terraform environment locally. Destroy plan is speculative. Destroy apply is auto-approved.
-
-make run_destroy_plan
-make run_destroy_apply
-Terraform init, validate and fmt are run for each of the make commands above.
-
-For more information on 3 Musketeers deployment method, visit the official site here. https://3musketeers.io/
 
 <br> 
 
@@ -51,11 +46,9 @@ The following workflows are provided in this repository. These are located under
 
 | Workflow | Description | Environments | Trigger
 |----------|-------------|--------------|--------|
-| app.yml | Build and push Docker image to ECR. | approval | on.push.branch [master] ||
-| destroy.yml | Two step workflow to run a speculative Terraform Destroy Plan and Terraform Destroy following manual approvals. | approval | on.push.branch [destroy] ||
+| app.yml | Build and push Docker image to ECR. | approval | on.push.branch [blue-green] ||
 
-Note: Pushing to `master` branch will trigger Terraform (TF) deploy. You will also need to create a branch named `destroy` in your GitHub repository. Not required locally and only used for pull requests `master -> destroy` to trigger TF destroy workflow.
-
+Note: Pushing to `blue-green` branch will trigger CI pipeline. 
 Additionally, ONLY changes to the following files and paths will trigger a workflow.
 
 ```
@@ -64,7 +57,7 @@ Additionally, ONLY changes to the following files and paths will trigger a workf
 ```
 
 ## GitHub Secrets
-Create GitHub Secrets in your repository for `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_SESSION_TOKEN` if using temporary credentials. ONLY `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` required if you have configured an IAM user with programmatic access.
+Create GitHub Secrets in your repository for `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` `AWS_SESSION_TOKEN` and `HOSTED_ZONE_ID` are required.
 
 <br>
 
