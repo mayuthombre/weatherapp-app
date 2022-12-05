@@ -14,6 +14,7 @@ then
     echo "ENV_TO_DEPLOY=blue" >> $GITHUB_ENV
 
 else
+    echo "ENV_TO_DEPLOY=error" >> $GITHUB_ENV
     echo "error: Are you trying to break everything? Go back & fix weighted distribution in Route53"
     exit 0
 fi

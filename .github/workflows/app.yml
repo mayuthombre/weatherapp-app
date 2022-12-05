@@ -36,3 +36,6 @@ jobs:
     - name: deploy to green
       if: env.ENV_TO_DEPLOY == 'green'
       run: make green_deploy
+    - name: error
+      if: env.ENV_TO_DEPLOY == 'error'
+      run: exit 1
