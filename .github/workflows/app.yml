@@ -2,10 +2,10 @@ name: Build image & update ECS task
 on:
   workflow_dispatch:
     branches:
-      - blue-green
+      - master
   push:
     branches:
-      - blue-green
+      - master
     paths:
       - 'application/**'
       - '.github/workflows/app.yml'
