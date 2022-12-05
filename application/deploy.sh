@@ -1,6 +1,6 @@
 #!/bin/bash
-green=$(aws route53 list-resource-record-sets --hosted-zone-id "${HOSTED_ZONE_ID}" --query "ResourceRecordSets[?SetIdentifier == 'green']")
-blue=$(aws route53 list-resource-record-sets --hosted-zone-id "${HOSTED_ZONE_ID}" --query "ResourceRecordSets[?SetIdentifier == 'blue']")
+green=$(aws route53 list-resource-record-sets --hosted-zone-id Z012246022TOM5F66YLQS --query "ResourceRecordSets[?SetIdentifier == 'green']")
+blue=$(aws route53 list-resource-record-sets --hosted-zone-id Z012246022TOM5F66YLQS --query "ResourceRecordSets[?SetIdentifier == 'blue']")
 echo $green | jq -r '.[].Weight' > valgreen
 valgreen=`cat valgreen`
 echo $blue | jq -r '.[].Weight' > valblue
