@@ -16,7 +16,6 @@ blue_deploy:	login_ecr	blue_build_image	blue_push_image	blue_update_ecs
 login_ecr:
 	aws ecr get-login-password --region $(AWS_REGION) | docker login --username AWS --password-stdin $(ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com
 
-
 green_build_image:
 	docker build --platform linux/amd64 -t $(ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/$(GREEN_REPO_NAME):latest .
 
